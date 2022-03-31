@@ -1,20 +1,21 @@
 package com.gb.advanced2.app
 
+import androidx.lifecycle.LiveData
 import com.gb.advanced2.entities.Articles
 import io.reactivex.Observable
 
 class Contract {
 
-    interface View {
-        fun displayArticles(articles: Articles)
-        fun showError(error: String)
-        fun showLoadingScreen()
+    sealed class AppState {
+        class Empty : AppState()
+        class Loading : AppState()
+        data class DataLoaded(val data: Articles) : AppState()
+        data class Error(val error: String) : AppState()
     }
 
-    interface Presenter {
-        fun onAttachView(view: View)
-        fun onDetachView()
-        fun search(term: String)
+    interface ViewModel {
+        fun getState(): LiveData<AppState>
+        fun search(searchString: String)
     }
 
     interface Model {
