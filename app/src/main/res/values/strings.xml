@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">gb-advanced2</string>
+    <string name="search_fab_description">search</string>
+    <string name="button_search">search</string>
+    <string name="clear_text">clear text</string>
+    <string name="search_hint">search</string>
+    <string name="progress_description">loading progress</string>
+</resources>
