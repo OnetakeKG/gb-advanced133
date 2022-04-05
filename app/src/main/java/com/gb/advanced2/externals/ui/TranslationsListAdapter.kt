@@ -10,11 +10,6 @@ import com.gb.advanced2.entities.Article
 import com.gb.advanced2.entities.Articles
 
 class Adapter : ListAdapter<Article, Adapter.ViewHolder>(DiffCallback) {
-    fun setData(data: Articles) {
-        super.submitList(data)
-    }
-
-    fun clearData() = setData(Articles())
 
     inner class ViewHolder(val vb: TranslationsListItemBinding) : RecyclerView.ViewHolder(vb.root)
 
@@ -23,13 +18,11 @@ class Adapter : ListAdapter<Article, Adapter.ViewHolder>(DiffCallback) {
             LayoutInflater.from(parent.context), parent, false
         )
     )
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = super.getItem(position)
         holder.vb.header.text = item.term
         holder.vb.description.text = item.desc
     }
-
     companion object DiffCallback : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(a: Article, b: Article) = a == b
         override fun areContentsTheSame(a: Article, b: Article) = a == b
