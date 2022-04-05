@@ -1,4 +1,4 @@
-package com.gb.advanced2.entities
+package com.gb.advanced1337.entities
 
 data class Article(
     val term: String,

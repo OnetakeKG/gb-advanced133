@@ -1,26 +1,23 @@
-package com.gb.advanced2.externals.ui
+package com.gb.advanced1337.externals.ui
+
+
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gb.advanced2.app.App
-import com.gb.advanced2.app.Contract
-import com.gb.advanced2.databinding.ActivityMainBinding
-import com.gb.advanced2.entities.Articles
+import com.gb.advanced1337.app.Contract
+import com.gb.advanced1337.databinding.ActivityMainBinding
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val adapter = Adapter()
-
-    @Inject
-    lateinit var viewModel: Contract.ViewModel
+    private val viewModel by inject<Contract.ViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        App.instance!!.appComponent.inject(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.recyclerview.layoutManager = LinearLayoutManager(applicationContext)
         binding.recyclerview.adapter = adapter
+
         viewModel.getState().observe(this) { renderState(it) }
     }
 
