@@ -1,12 +1,14 @@
-package com.gb.advanced2.externals.repo.retrofit
+package com.gb.advanced1337.externals.repo.retrofit
 
-import io.reactivex.Observable
+
+
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
     @GET("words/search")
-    fun search(@Query("search") searchQuery: String): Observable<List<ModelResponseEntry>>
+    suspend fun search(@Query("search") searchQuery: String): Response<List<ModelResponseEntry>>
 
     companion object {
         const val BASE_URL = "https://dictionary.skyeng.ru/api/public/v1/"
